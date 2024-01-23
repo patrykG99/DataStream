@@ -1,2 +1,3 @@
 # Project exclude paths
 /streams.examples/target/
+/streams.examples/src/main/resources/test.json
