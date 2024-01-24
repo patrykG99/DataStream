@@ -1,20 +1,14 @@
 package myapps;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import dataGeneration.DataGenerator;
 import integration.ApiClient;
 import integration.ApiResponse;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.ValueMapper;
+import kafka.StockDataProducer;
 
-import java.util.Arrays;
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
 
 public class LineSplit {
-    public static void main(String[] args){
+    public static void main(String[] args) throws JsonProcessingException {
 
 //        Properties props = new Properties();
 //        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-linesplit");
@@ -46,10 +40,18 @@ public class LineSplit {
 //            System.exit(1);
 //        }
 //        System.exit(0);
-        ApiClient apiClient = new ApiClient("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=");
-        ApiResponse apiResponse = apiClient.getData();
-        System.out.println(apiResponse.getMetaData());
-        System.out.println(apiResponse.getTimeSeries().getTimeSeriesDataMap());
+//        ApiClient apiClient = new ApiClient("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=");
+//        ApiResponse apiResponse = apiClient.getData();
+        //System.out.println(apiResponse.getMetaData());
+        //System.out.println(apiResponse.getTimeSeries().getTimeSeriesDataMap());
+        System.out.printf(DataGenerator.convertToJson());
+
+        StockDataProducer dataProducer = new StockDataProducer();
+        dataProducer.sendStockData("stock-data",DataGenerator.convertToJson());
+
+
+
+
 
 
 

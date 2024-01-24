@@ -3,6 +3,7 @@ package integration;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dataGeneration.DataGenerator;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -28,18 +29,20 @@ public class ApiClient {
             }
 
             // Use try-with-resources for automatic resource management
-            try (InputStream in = ApiClient.class.getResourceAsStream("/test.json");
-                 BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+            try (InputStream in = ApiClient.class.getResourceAsStream("/test.json")) {
+                assert in != null;
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
 
-                StringBuilder content = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    content.append(line);
+                    StringBuilder content = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        content.append(line);
+                    }
+
+                    String jsonResponse = DataGenerator.convertToJson();
+                    ObjectMapper mapper = new ObjectMapper();
+                    return mapper.readValue(jsonResponse, ApiResponse.class);
                 }
-
-                String jsonResponse = content.toString();
-                ObjectMapper mapper = new ObjectMapper();
-                return mapper.readValue(jsonResponse, ApiResponse.class);
             }
 
         } catch (IOException e) {
