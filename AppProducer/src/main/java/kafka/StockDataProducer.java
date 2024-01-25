@@ -25,18 +25,22 @@ public class StockDataProducer {
 
     public void sendStockData(String topic, String value) {
         ProducerRecord<String, String> record = new ProducerRecord<>(topic, value);
-//        producer.send(record, (metadata, exception) -> {
-//            if (exception == null) {
-//                System.out.println("Sent record: " + metadata.toString());
-//                System.out.println("RRRRRRRRR");
-//            } else {
-//                System.out.println("RRRRRRRRR");
-//
-//                exception.printStackTrace();
-//            }
-//        });
-        producer.send(record);
+        producer.send(record, (metadata, exception) -> {
+            if (exception == null) {
+                System.out.println("Sent record: " + metadata.toString());
+                System.out.println("RRRRRRRRR");
+            } else {
+                System.out.println("RRRRRRRRR");
+
+                exception.printStackTrace();
+            }
+        });
+//        producer.send(record);
         producer.flush();
+
+    }
+
+    public void closeProducer(){
         producer.close();
     }
 
