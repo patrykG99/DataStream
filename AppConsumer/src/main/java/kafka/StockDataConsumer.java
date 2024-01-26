@@ -26,12 +26,11 @@ public class StockDataConsumer {
         consumer.subscribe(List.of("stock-data"));
     }
 
-    public void pollData(){
+    public String pollData(){
         while(true){
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
             for (ConsumerRecord<String, String> record : records) {
-                System.out.println("hehe");
-                System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+                return record.value();
             }
         }
 
