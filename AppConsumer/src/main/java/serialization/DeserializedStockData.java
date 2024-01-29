@@ -29,6 +29,17 @@ public class DeserializedStockData {
         this.timeSeries = timeSeries;
     }
 
+    public void update(DeserializedStockData newData) {
+        if (newData != null) {
+            // Assuming you want to update only the time series data
+            // and keep the meta data as is.
+            // Adjust this logic according to your specific needs.
+            if (newData.getTimeSeries() != null) {
+                this.timeSeries = newData.getTimeSeries();
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "DeserializedStockData{" +
