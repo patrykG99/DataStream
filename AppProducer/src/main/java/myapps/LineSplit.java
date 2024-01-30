@@ -46,7 +46,7 @@ public class LineSplit {
 //        ApiResponse apiResponse = apiClient.getData();
         //System.out.println(apiResponse.getMetaData());
         //System.out.println(apiResponse.getTimeSeries().getTimeSeriesDataMap());
-        System.out.printf(DataGenerator.convertToJson());
+
 
         StockDataProducer dataProducer = new StockDataProducer();
 
@@ -55,7 +55,7 @@ public class LineSplit {
 
         while(true){
             try{
-                dataProducer.sendStockData("stock-data",DataGenerator.convertToJson());
+                dataProducer.sendStockData("stock-data","IBM",DataGenerator.convertToJson());
                 Thread.sleep(1000);
             }catch (InterruptedException e){
                 Thread.currentThread().interrupt();

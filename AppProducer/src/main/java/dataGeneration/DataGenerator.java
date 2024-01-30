@@ -28,6 +28,8 @@ public class DataGenerator {
             String formattedTimestamp = timestamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             double open = Math.random() * 100;
             double low = open - Math.random() * 10;
+            if(low < 0)
+                low *= -1;
             TimeSeriesDataGen data = new TimeSeriesDataGen(
                     String.format(Locale.ENGLISH,"%.4f",open),String.format(Locale.ENGLISH,"%.4f",open + Math.random() * 10) ,String.format(Locale.ENGLISH,"%.4f",low),String.format(Locale.ENGLISH,"%.4f",low + Math.random() * 10), "" + (int) (Math.random() * 1000)
             );

@@ -23,19 +23,18 @@ public class StockDataProducer {
         this.producer = new KafkaProducer<>(properties);
     }
 
-    public void sendStockData(String topic, String value) {
-        ProducerRecord<String, String> record = new ProducerRecord<>(topic, value);
+    public void sendStockData(String topic,String key, String value) {
+        ProducerRecord<String, String> record = new ProducerRecord<>(topic,key, value);
         producer.send(record, (metadata, exception) -> {
             if (exception == null) {
                 System.out.println("Sent record: " + metadata.toString());
-                System.out.println("RRRRRRRRR");
             } else {
-                System.out.println("RRRRRRRRR");
+
 
                 exception.printStackTrace();
             }
         });
-//        producer.send(record);
+
         producer.flush();
 
     }
