@@ -39,8 +39,8 @@ public class StockDataProcessor {
 
                 );
 
-//        aggregateKTable.toStream()
-//                .to("aggregated-stock-data",Produced.with(windo));
+        aggregateKTable.toStream()
+                .to("aggregated-stock-data",Produced.with(windowedStringSerde,stockAggregateSerde));
 
     }
 
