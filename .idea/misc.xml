@@ -7,6 +7,7 @@
         <option value="$PROJECT_DIR$/streams.examples/pom.xml" />
         <option value="$PROJECT_DIR$/AppConsumer/pom.xml" />
         <option value="$PROJECT_DIR$/AppProducer/pom.xml" />
+        <option value="$PROJECT_DIR$/KafkaBackend/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

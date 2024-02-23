@@ -39,7 +39,7 @@ export default function ChartComponent() {
 
     return (
         <div className="chart">
-        Hello
+
             <div ref={chartRef} className="chart"></div>
 
 
