@@ -11,7 +11,6 @@ public class KafkaListenerService {
     @KafkaListener(topics = "aggregated-stock-data")
     public void listen(String message) {
         messages.add(message);
-        // Depending on the requirement, you can also process the message before adding
     }
 
     public List<String> getMessages() {
