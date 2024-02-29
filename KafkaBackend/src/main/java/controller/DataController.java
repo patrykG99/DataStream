@@ -18,6 +18,7 @@ public class DataController {
     }
     @GetMapping("/messages")
     public ResponseEntity<List<String>> getMessages(){
+        System.out.println("hehe");
         return ResponseEntity.ok().body(kafkaListenerService.getMessages());
     }
 }
