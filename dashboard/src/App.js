@@ -1,11 +1,11 @@
 
 import './App.css';
-import ChartComponent from "./components/chart.component";
+import MainComponent from "./components/main.component";
 
 function App() {
   return (
     <div>
-      <ChartComponent/>
+        <MainComponent/>
     </div>
   );
 }
